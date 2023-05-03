@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Erwin Yonata</title>
+
+    <!-- Title Icon -->
+    <link rel="icon" type="../image/png" href="img/wall-e.png">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Erwin Yonata Blog's</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="../project.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="../about.html">About Me</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://res.cloudinary.com/dizwvnwu0/image/upload/v1683111204/CPS%20Sampoerna%20University/Anasa/brand.png" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <h5>SAMPOERNA UNIVERSITY - Research & Development</h5>
+                <h2><b>Anasa - BREATHING WAVE PREDICTION</b></h2><br>
+                <p>The first time the idea came to 17 February 2023, and the idea turned into execution and finished on 14 April 2023, finally a thing was formed that became a reality, "Anasa " to be a program that can do prediction on human breathing wave using deep learning using LSTM RNN method, achieving 99.7% accuracy</p>
+                
+                <p>You can find the project at <br><a href="https://github.com/yokahealthcare/Anasa"><i class="fa fa-github"></i> Github</a></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-8"> 
+          <p>
+            Anasa is a follow-up research project from the research <b>"Non-Contact Monitoring and Classification of Breathing Pattern for the Supervision of People Infected by COVID-19"</b> which can be found at <a href="https://www.mdpi.com/1424-8220/21/9/3172">here</a><br><br>
+
+            Anasa uses Deep Learning artificial intelligence technology under the name RNN LSTM. By using this technology, Anasa can predict data with very high accuracy of up to ~90%.
+          </p>
+          <br>
+          <h6>Project start : 17 February 2023</h6>
+          <h6>Project ends: 13 April 2023</h6>
+        </div>
+      </div>
+      <br><br>
+
+        <h3>1. DATASET</h3>
+        <br>
+        <div class="ml-4">
+            <h5>1.1 How much the Data?</h5>
+            <p>The dataset that will be used in this study contains 26400 rows of data and with 86 columns/features in the breathing wave. This data has been cleaned and filtered and is ready to be used for prediction data.</p>
+
+            <br>
+
+            <h5>1.2 Training and Testing Ratio</h5>
+            <p>In predicting the data that will be used will be divided into <b>80% training and 20% testing</b> for Hold-out and Stratified K-fold (5-fold) Cross Validation using function <code>train_test_split()</code> from <code>sklearn.model_selection</code> library, but we will use <b>90% training and 10% testing</b> in GridSearch Cross Validation, because in our method uses Stratified K-fold (10-fold).</p>
+        
+        <br>
+        
+        <b>NOTE :</b> <span class="text-danger"><b>the seed of all process in program is set to <mark>21</mark>. This for reproducibility purposes.</b></span>
+            
+        <br><br><br>
+
+            <h5>1.3 Standardization Method</h5>
+            <p>The data we get will be separated into 2, namely, data used for processing (X) and data labels (Y).</p>
+
+        <br><br>
+        <b>Processing Data (X)</b>
+        <br><br>
+        <pre>
+        0.483309  0.459790  0.431024  0.376565  0.295734  0.193290  0.066060  -0.083445 -0.247221 -0.409374 ... 0.332737  0.391514  0.452677  0.521407  0.595845  0.661691  0.702932  0.708613  0.682564  0.637765
+        -2.044518 -1.935588 -1.808629 -1.667919 -1.513497 -1.348760 -1.171044 -0.972509 -0.759554 -0.547793 ... 0.325687  0.138731  -0.053860 -0.241691 -0.417603 -0.582320 -0.738485 -0.889731 -1.037066 -1.174654
+        -1.213535 -1.269056 -1.323306 -1.375251 -1.430062 -1.485479 -1.529200 -1.557172 -1.574662 -1.575457 ... 0.902226  0.947940  0.996154  1.035743  1.049543  1.024204  0.954716  0.844505  0.702445  0.541555
+        -0.914806 -0.887726 -0.856065 -0.823527 -0.794551 -0.768074 -0.740895 -0.713364 -0.685445 -0.652020 ... -0.407344 -0.478218 -0.571465 -0.684115 -0.817078 -0.966231 -1.122537 -1.264759 -1.376908 -1.461059
+        -1.547469 -1.458818 -1.362120 -1.264829 -1.164948 -1.060064 -0.954496 -0.849448 -0.742812 -0.636614 ... 0.322969  0.227050  0.130983  0.041438  -0.038034 -0.106152 -0.163048 -0.210926 -0.253102 -0.290270
+        ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ...
+        -0.152463 -0.164723 -0.165409 -0.152623 -0.118115 -0.066218 -0.010253 0.041637  0.092217  0.140510  ... -0.345803 -0.336787 -0.306774 -0.280607 -0.269843 -0.260062 -0.229981 -0.167654 -0.082300 0.004372
+        -0.164723 -0.165409 -0.152623 -0.118115 -0.066218 -0.010253 0.041637  0.092217  0.140510  0.188025  ... -0.336787 -0.306774 -0.280607 -0.269843 -0.260062 -0.229981 -0.167654 -0.082300 0.004372  0.089958
+        -0.165409 -0.152623 -0.118115 -0.066218 -0.010253 0.041637  0.092217  0.140510  0.188025  0.240939  ... -0.306774 -0.280607 -0.269843 -0.260062 -0.229981 -0.167654 -0.082300 0.004372  0.089958  0.179209
+        -0.152623 -0.118115 -0.066218 -0.010253 0.041637  0.092217  0.140510  0.188025  0.240939  0.294399  ... -0.280607 -0.269843 -0.260062 -0.229981 -0.167654 -0.082300 0.004372  0.089958  0.179209  0.264014
+        -0.118115 -0.066218 -0.010253 0.041637  0.092217  0.140510  0.188025  0.240939  0.294399  0.340346  ... -0.269843 -0.260062 -0.229981 -0.167654 -0.082300 0.004372  0.089958  0.179209  0.264014  0.343418
+        26400 rows × 85 columns
+
+      </pre>
+      <br><br>
+      <b>Label Data (Y)</b>
+      <br><br>
+      <pre>
+        normal        19734
+        quick          2667
+        hold           2133
+        deep           1066
+        deep_quick      800
+        Name: labels, dtype: int64
+      </pre>
+
+      <br><br>
+
+            <div class="ml-4">
+                <h5>1.3.1 StandarScaler()</h5>
+                <p>Data X will be standardized before processing, this needs to be done to get the best results. Standardizing the data will use the <code>StandardScaler</code> function from the <code> sklearn.preprocessing</code> library.</p>
+                <br>
+                <b>Formula of StandarScaler()</b><br><br>
+                <p>
+                    <mark><code>z = (x - u) / s</code></mark><br><br>
+
+                    where x is the original feature value, u is the mean of the feature values, s is the standard deviation of the feature values, and z is the transformed feature value.
+                </p>
+
+
+                <br>
+                <h5>1.3.2 LabelEncoder() and Hot Encoding</h5>
+                <p>Label data (Y) will be processed into binary data that can be understood by Deep Learning. This process will use two steps, first we will process it into category numbers with the <code>LabelEncoder()</code> function, which will convert string labels into a series of numbers, for example like this</p>
+
+          <br>
+          <pre>
+            array([0, 0, 0, ..., 4, 4, 4])
+          </pre>
+          <br>
+
+          <p>then we will convert the category numbers into binary form by using the <code>to_categorical()</code> function from the keras.utils library.</p>
+
+          <br>
+          <pre>
+            array([[1., 0., 0., 0., 0.],
+                   [1., 0., 0., 0., 0.],
+                   [1., 0., 0., 0., 0.],
+                   ...,
+                   [0., 0., 0., 0., 1.],
+                   [0., 0., 0., 0., 1.],
+                   [0., 0., 0., 0., 1.]], dtype=float32)
+            </pre>
+          <br>
+            </div>
+
+            <br>
+
+            <h5>1.4 Data Reshaping</h5>
+            <p>To be able to use the Deep Learning RNN LSTM the input of the data must be in the form of a 3 Dimensional Numpy Array, which includes the structure (batch_size, timesteps, units). Therefore we have to reshape the data using the <code>reshape()</code> command from the Numpy library.
+            <br><br>
+
+        The data will be of the form <code>(26400, 17, 5)</code></p>
+
+        <br>
+        <b>EXPLANATION:</b>
+        <br>        
+        Data below is the first row of the dataset with the shape (1, 85)
+        <br><br>
+
+
+        <code>
+          [ 1.59779273,  1.52042951,  1.42534948,  1.24544463,  0.97877093,
+            0.64113256,  0.22212201, -0.26988872, -0.80815449, -1.33978869,
+           -1.83328397, -2.28952432, -2.6368176 , -2.81494064, -2.84844821,
+           -2.76760377, -2.58571783, -2.31963872, -2.00038434, -1.66147628,
+           -1.36562416, -1.19476024, -1.17729135, -1.2977569 , -1.52384404,
+           -1.82082466, -2.17874772, -2.60014402, -3.07134787, -3.56333075,
+           -4.00879838, -4.35764911, -4.6172318 , -4.76702151, -4.8221929 ,
+           -4.7965052 , -4.64384597, -4.36031584, -3.95276955, -3.43276658,
+           -2.85942697, -2.2775082 , -1.72868417, -1.29251782, -1.00809696,
+           -0.84599296, -0.74764585, -0.66382353, -0.58121718, -0.51507262,
+           -0.50170575, -0.57526212, -0.7172985 , -0.87620914, -1.03846942,
+           -1.2122023 , -1.37951765, -1.49585828, -1.52929515, -1.50696986,
+           -1.47654706, -1.45083177, -1.4234364 , -1.34050265, -1.12435284,
+           -0.76662794, -0.34519415,  0.02776088,  0.29501456,  0.46066572,
+            0.55683282,  0.63033067,  0.70647094,  0.79521174,  0.91788837,
+            1.08483011,  1.27551698,  1.47467796,  1.69926597,  1.94374306,
+            2.16209239,  2.30181472,  2.32587882,  2.24578422,  2.1036879 ]        
+
+        </code>
+
+        <br><br>     
+        Then, we are transforming the data into the shape of (1, 17, 5)
+        <br><br>
+
+        <pre><code>
+          [[ 1.59779273,  1.52042951,  1.42534948,  1.24544463,  0.97877093],
+           [ 0.64113256,  0.22212201, -0.26988872, -0.80815449, -1.33978869],
+           [-1.83328397, -2.28952432, -2.6368176 , -2.81494064, -2.84844821],
+           [-2.76760377, -2.58571783, -2.31963872, -2.00038434, -1.66147628],
+           [-1.36562416, -1.19476024, -1.17729135, -1.2977569 , -1.52384404],
+           [-1.82082466, -2.17874772, -2.60014402, -3.07134787, -3.56333075],
+           [-4.00879838, -4.35764911, -4.6172318 , -4.76702151, -4.8221929 ],
+           [-4.7965052 , -4.64384597, -4.36031584, -3.95276955, -3.43276658],
+           [-2.85942697, -2.2775082 , -1.72868417, -1.29251782, -1.00809696],
+           [-0.84599296, -0.74764585, -0.66382353, -0.58121718, -0.51507262],
+           [-0.50170575, -0.57526212, -0.7172985 , -0.87620914, -1.03846942],
+           [-1.2122023 , -1.37951765, -1.49585828, -1.52929515, -1.50696986],
+           [-1.47654706, -1.45083177, -1.4234364 , -1.34050265, -1.12435284],
+           [-0.76662794, -0.34519415,  0.02776088,  0.29501456,  0.46066572],
+           [ 0.55683282,  0.63033067,  0.70647094,  0.79521174,  0.91788837],
+           [ 1.08483011,  1.27551698,  1.47467796,  1.69926597,  1.94374306],
+           [ 2.16209239,  2.30181472,  2.32587882,  2.24578422,  2.1036879 ]]
+
+        </code></pre>
+
+
+        <br><br>     
+        We are going to make the other rows, like this also. So, the final shape is (26400, 17, 5).
+        After
+        <br><br><br><br>
+      </div>
+
+      <h3>2. RNN (Recurrent Neural Network)</h3>
+      <p>In building machine learning models we will use Deep Learning with Tensorflow and Keras. In particular, we will use the RNN type.</p>
+      <br>
+      <div class="ml-4">
+        <h5>2.1 What is Deep Learning?</h5>
+        <p>Deep learning is a subfield of machine learning that uses artificial neural networks to model and solve complex problems. It involves training artificial neural networks on large amounts of data, allowing them to learn patterns and make predictions or classifications without being explicitly programmed for each task. The term <b>"deep"</b> refers to the number of layers in the neural network, which allows for the extraction of increasingly abstract features from the input data. Deep learning has led to breakthroughs in areas such as computer vision, natural language processing, and speech recognition.</p>
+
+        <br>
+        <h5>2.2 What is RNN (Recurrent Neural Network)?</h5>
+        <p>RNN is a powerful tool for <b>processing sequential data that can remember past inputs and use them to make predictions about future outputs.</b> What sets RNN apart from other neural networks is its ability to take into account previous inputs by using a loop that allows information to persist across different time steps. This loop creates a feedback mechanism that enables the network to maintain an internal memory of the past inputs, allowing it to learn and recognize patterns in sequential data.</p>
+
+        <br>
+        <img class="img-fluid" src="RNN On Paper.png">
+        <div class="text-center"><label>figure 1. illustration of an RNN process that rolls back but is flat mapped</label></div>
+        <br>
+        <ul>
+          <li>
+            <b>Ht</b>
+            <br>
+            Is a predictive output valve. Where this valve is a predicted value that is trained from previous data.
+          </li>
+          <li>
+            <b>Xt</b>
+            <br>
+            It is a valve input model. Where this valve is the value that will be trained in a model.
+          </li>
+          <li>
+            <b>A</b>
+            <br>
+            Is an activation function that is used when training with RNN
+          </li>
+        </ul>
+
+        <p>So in RNN deep learning, the predicted results from the first data are not immediately issued, but the predicted results are combined with the second data and so on until a predetermined time. For example, if you want to predict the stock price of company A on the 21st day, it means that the data will be used from day 1 to day 20, after that the RNN will compute from the past few days and predict the day for the next day (day 21st)</p>
+
+        <br><br>
+
+        <p>This is the traditional RNN Process, and this is not used often because of the <b>VANISHING & EXPLODING GRADIENT PROBLEM</b>, which say if the NUMBER of UNROLL is so many it will creating extreme multiplication for the gradient value, and it will resulting vanished / exploded the model. </p>
+
+        <br>
+
+        <h5>2.3 What is Vanishing & Exploding Gradient Problem?</h5>
+        <div class="row">
+          <div class="col-6">
+            <img src="Exploding Gradient Problem.png" class="img-fluid">
+          figure 2. illustration of the RNN process which will have exploding gradient problems
+          </div>
+          <div class="col-6">
+            <br>
+            <h5>Exploding Gradient Problem</h5>
+            <p>Conditions where the results of gradient descent are very large, and want to cause the input data to be multiplied very large, the greater the input used.</p>
+            <br>
+            <b>For example:</b><br>
+            <code>input x (2 x 2 x 2 x 2) ==> input x 16</code>
+            <p>The result above will multiply the first input by 16 times before it gets to the final copy of the network</p>
+            <br>
+            <b>Or you can use the formula,</b><br>
+            <code>input x W<sub>2</sub><sup>Num. Unroll</sup></code>
+            <br>
+            <p>If we use as much as 50 input data, and that is very small data for stock market data. Then the results will be multiplied by <code>2<sup>50</sup></code> it is a very big value. to be precise <code>1125899906842624</code></p>
+          </div>
+        </div>
+        <br><br>
+        <div class="row">
+          <div class="col-6">
+            <br>
+            <h5>Vanishing Gradient Problem</h5>
+            <p>Conditions where the results of gradient descent are very small, and want to cause the input data to be multiplied very small, the greater the input used.</p>
+            <br>
+            <b>For example:</b><br>
+            <code>input x (0.5 x 0.5 x 0.5 x 0.5) ==> input x 0.0625</code>
+            <p>The result above will multiply the first input by 0.0625 times before it gets to the final copy of the network</p>
+            <br>
+            <b>Or you can use the formula,</b><br>
+            <code>input x W<sub>0.5</sub><sup>Num. Unroll</sup></code>
+            <br>
+            <p>If we use as much as 50 input data, and that is very small data for stock market data. Then the results will be multiplied by <code>0.5<sup>50</sup></code> it is a very big value. to be precise <code>8.88178 x 10<span>-16</span></code></p>
+          </div>
+          <div class="col-6">
+            <img src="Vanishing Gradient Problem.png" class="img-fluid">
+            figure 3. illustration of the RNN process which will have vanishing gradient problems
+          </div>
+        </div>
+        <br><br>
+        <b>SOLUTION</b>
+        <ul>
+          <li><b>Exploding Gradient</b></li>
+            <ol>
+              <li>
+                <b>Truncated Backpropagation</b><br>
+                Stopping updating the weight across all NN, only certain amount NN will be updated this will creating not optimal model.
+              </li>
+              <li>
+                <b>Penalties</b><br>
+                Gradient being penalized / artificial reduced
+              </li>
+              <li>
+                <b>Gradient Clipping</b><br>
+                Limit the Gradient
+              </li>
+            </ol>
+
+            <li><b>Vanishing Gradient</b></li>
+            <ol>
+              <li>
+                <b>Weight Initialization</b><br>
+                How smart you initialize the value of weight
+              </li>
+              <li><b>Echo State Networks</b></li>
+              <li><b>Long Short-Term Memory Network (LSTMs)</b></li>
+            </ol>
+        </ul>
+
+        <br>
+        <p class="text-danger"><b>We will use LSTM as a solution method to avoid the exploding/vanishing gradient problem.</b></p>
+        <br>
+
+        <h5>2.4 What is LSTM (Long Short-Term Memory) in RNN?</h5>
+        <p>LSTM stands for Long Short-Term Memory, which is a type of recurrent neural network (RNN) architecture that is particularly effective at processing sequences of data.</p>
+        <br>
+        <img class="img-fluid" src="RNN LSTM.png">
+        <div class="text-center"><label>figure 4. illustration of the LSTM circuit in the RNN process</label></div>
+        <br>
+        <p>LSTM networks use a memory cell to keep track of information over time, allowing them to selectively "forget" or "remember" information based on the context of the input sequence. This is accomplished through the use of specialized gates that control the flow of information into and out of the memory cell.</p>
+
+
+        <br>
+          <ul>
+            <li>
+              <b>Sigmoid Function (σ)</b><br>
+              <p>The sigmoid function converts all input to a number between 0 and 1</p>
+            </li>
+            <li>
+              <b>tanh Function</b><br>
+              <p>The tanh function converts all input to a number between -1 and 1</p>
+            </li>
+            <li>
+              <b>C(t-1)</b><br>
+              <p>Long-Term Memory value from the previous process, if this is the first process, then the value starts from 0</p>
+            </li>
+            <li>
+              <b>H(t-1)</b><br>
+              <p>Short-Term Memory value from the previous process, if this is the first process, then the value starts from 0</p>
+            </li>
+            <li>
+              <b>Xt</b><br>
+              <p>The value that is input into the LSTM process</p>
+            </li>
+            <li>
+              <b>Ht</b><br>
+              <p>The calculation results of the Short-Term Memory that has been calculated. <b class="text-danger">This is what we will consider the predicted result.</b></p>
+              <ul>
+                <li>
+                  <b>Upper Side</b><br>
+                  <p>Current prediction results</p>
+                </li>
+                <li>
+                  <b>Right Side</b><br>
+                  <p>The prediction results are forwarded to the next LSTM</p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <b>Ct</b><br>
+              <p>Value Long-Term Memory that has been calculated, and forwarded to the next LSTM.</p>
+            </li>
+            <li>
+              <b>Forgot Valve</b><br>
+              <p>This determines what percentage of the Long-Term Memory will remember.</p>
+            </li>
+            <li>
+              <b>Adding Valve</b><br>
+              <p>Used to update the value of Long-Term Memory</p>
+            </li>
+            <li>
+              <b>Output Valve</b><br>
+              <p>Used to update the value of Short-Term Memory</p>
+            </li>
+          </ul>
+        <br>
+
+        <p>The ability of LSTM networks to handle long-term dependencies and avoid the vanishing gradient problem associated with traditional RNNs has made them particularly useful in applications such as natural language processing, speech recognition, and time-series prediction.</p>
+
+      </div>
+
+      <br><br>
+
+      <h3>3. RESULT OF PREDICTION</h3>
+      <p>Below are the results of all the training and testing of the various methods used.</p>
+      <br>
+      <div class="ml-4">
+        <h5>3.1a HOLD-OUT Cross Validation</h5>
+        <p>The hold-out method involves randomly splitting the dataset into two parts, typically in a 70/30 or 80/20 split, with the larger portion allocated to the training set and the smaller portion allocated to the validation set.</p>
+        <pre>
+          LAYER       : <b class="text-danger">2-LAYERS</b>
+          RATIO       : 80% training 20% testing
+          SCALE       : StandardScaler
+          SEED        : 21
+          EPOCH       : 15
+          BATCH SIZE  : 32
+          UNIT        : 60 neurons
+          DROPOUT     : 20%
+        </pre>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Optimizer</th>
+              <th>Loss</th>
+              <th>Acc</th>
+              <th>Val. Loss</th>
+              <th>Val. Acc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Adam</td>
+              <td>7.94</td>
+              <td>97.63</td>
+              <td>7.24</td>
+              <td>97.99</td>
+            </tr>
+            <tr>
+              <td>RMSProp</td>
+              <td>10.16</td>
+              <td>97.03</td>
+              <td>8.63</td>
+              <td>97.52</td>
+            </tr>
+            <tr>
+              <td>SGD</td>
+              <td>65.87</td>
+              <td>77.35</td>
+              <td>66.51</td>
+              <td>76.76</td>
+            </tr>
+            <tr>
+              <td>Adadelta</td>
+              <td>93.72</td>
+              <td>74.75</td>
+              <td>92.32</td>
+              <td>74.73</td>
+            </tr>
+            <tr>
+              <td>Adagrad</td>
+              <td>71.57</td>
+              <td>76.9</td>
+              <td>71.93</td>
+              <td>76.74</td>
+            </tr>
+
+          </tbody>
+        </table>  
+
+        <br><br>
+
+        <pre>
+          LAYER       : <b class="text-danger">3-LAYERS</b>  
+          RATIO       : 80% training 20% testing
+          SCALE       : StandardScaler
+          SEED        : 21
+          EPOCH       : 15
+          BATCH SIZE  : 32
+          UNIT        : 60 neurons
+          DROPOUT     : 20%
+        </pre>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Optimizer</th>
+              <th>Loss</th>
+              <th>Acc</th>
+              <th>Val. Loss</th>
+              <th>Val. Acc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-success">
+              <td>Adam</td>
+              <td>6.93</td>
+              <td>97.94</td>
+              <td>6.29</td>
+              <td>98.11</td>
+            </tr>
+            <tr>
+              <td>RMSProp</td>
+              <td>8.25</td>
+              <td>97.57</td>
+              <td>8.22</td>
+              <td>97.84</td>
+            </tr>
+            <tr>
+              <td>SGD</td>
+              <td>66.63</td>
+              <td>77.2</td>
+              <td>67.06</td>
+              <td>76.95</td>
+            </tr>
+            <tr>
+              <td>Adadelta</td>
+              <td>89.83</td>
+              <td>74.75</td>
+              <td>89.27</td>
+              <td>74.73</td>
+            </tr>
+            <tr>
+              <td>Adagrad</td>
+              <td>72.12</td>
+              <td>76.67</td>
+              <td>72.47</td>
+              <td>76.55</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <br>
+        <p><b class="text-info">From the tests of the two types of layers with the same variables, better results are obtained on the neural network which has 3 layers with the acquisition of a validation accuracy value of 98.11%</b></p>
+        <br><br>
+
+        <h5>3.1b HOLD-OUT Cross Validation <span class="text-primary">(with DATA AUGMENTATION)</span></h5>
+        <p>In this case we also try to do <b>DATA AUGMENTATION</b> by increasing the data up or down by 0.01 and added to the original data. Here we will use the "Adam" optimizer and use 3 layers, because this parameter produces the best results. This is the result obtained,</p>
+
+        <b>UP</b><br>
+        Only increasing the value by 0.01<br>
+        SIZE OF DATASET : 26400 (ori) x 2 = 52.800 rows
+        <br><br>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Epochs</th>
+              <th>Loss</th>
+              <th>Acc</th>
+              <th>Val. Loss</th>
+              <th>Val. Acc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>7</td>
+              <td>8.21</td>
+              <td>97.64</td>
+              <td>6.91</td>
+              <td>98.17</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>4.50</td>
+              <td>98.74</td>
+              <td>3.01</td>
+              <td>99.05</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <br><br>
+        <b>UP & DOWN</b><br>
+        Only increasing the value by 0.01 and decreasing the value by 0.01<br>
+        SIZE OF DATASET : 26400 (ori) x 3 = 79.200 rows
+        <br><br>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Epochs</th>
+              <th>Loss</th>
+              <th>Acc</th>
+              <th>Val. Loss</th>
+              <th>Val. Acc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>5</td>
+              <td>7.69</td>
+              <td>97.85</td>
+              <td>5.37</td>
+              <td>98.40</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>4.21</td>
+              <td>98.85</td>
+              <td>2.82</td>
+              <td>99.20</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>2.17</td>
+              <td>99.34</td>
+              <td>1.22</td>
+              <td>99.58</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <p><b class="text-info">The results of the validation accuracy are almost the same as before. However, training can be faster than before, the number of epochs can be reduced and training is completed more quickly.</b></p>
+
+        <br><br><br>
+
+        <h5>3.2 Stratified K-FOLD Cross Validation</h5>
+        <p>In stratified k-fold cross-validation, the dataset is divided into k subsets, with each subset having approximately the same proportion of target classes as the original dataset. <br><br> <b>By using stratified k-fold cross-validation, we can get a more accurate estimate of the model's performance, as it ensures that the model is evaluated on a diverse set of examples, rather than being biased towards one class.</b></p>
+        
+        <br><br>
+        <b>5-FOLD</b>
+        <br><br>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Fold</th>
+              <th>Loss</th>
+              <th>Acc</th>
+              <th>Val. Loss</th>
+              <th>Val. Acc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2</td>
+              <td>8.34</td>
+              <td>97.41</td>
+              <td>8.23</td>
+              <td>97.67</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>8.34</td>
+              <td>97.42</td>
+              <td>7.49</td>
+              <td>97.63</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>7.98</td>
+              <td>97.54</td>
+              <td>8.91</td>
+              <td>97.5</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>9.2</td>
+              <td>97.28</td>
+              <td>8.84</td>
+              <td>97.46</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>7.88</td>
+              <td>97.72</td>
+              <td>10.14</td>
+              <td>97.22</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <br>
+        <pre>
+          Mean Validation Loss                    : 8.72%  
+          Mean Validation Accuracy                : 97.50%  
+          STD Validation val. Loss                : 0.87%  
+          STD Validation val. Accuracy            : 0.16%  
+        </pre>
+
+
+        <br><br>
+        <b>10-FOLD</b>
+        <br><br>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Fold</th>
+              <th>Loss</th>
+              <th>Acc</th>
+              <th>Val. Loss</th>
+              <th>Val. Acc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-success">
+              <td>6</td>
+              <td>7.57</td>
+              <td>97.73</td>
+              <td>5.93</td>
+              <td>98.45</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>7.4</td>
+              <td>97.8</td>
+              <td>5.33</td>
+              <td>98.45</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>7.83</td>
+              <td>97.65</td>
+              <td>5.64</td>
+              <td>98.41</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>6.6</td>
+              <td>98.16</td>
+              <td>5.98</td>
+              <td>98.22</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>8.63</td>
+              <td>97.42</td>
+              <td>6.39</td>
+              <td>98.03</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>7.33</td>
+              <td>97.87</td>
+              <td>5.9</td>
+              <td>97.99</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>7.44</td>
+              <td>97.77</td>
+              <td>7.24</td>
+              <td>97.92</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>7.5</td>
+              <td>97.88</td>
+              <td>7.65</td>
+              <td>97.92</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>7.73</td>
+              <td>97.64</td>
+              <td>7.79</td>
+              <td>97.61</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>8.39</td>
+              <td>97.45</td>
+              <td>8.39</td>
+              <td>97.42</td>
+            </tr>
+
+
+          </tbody>
+        </table>
+
+        <br>
+        <pre>
+          Mean Validation Loss                    : 6.62%  
+          Mean Validation Accuracy                : 98.04%  
+          STD Validation val. Loss                : 1.00%  
+          STD Validation val. Accuracy            : 0.33%  
+        </pre>
+
+        <p><b class="text-info">From the results above it can be concluded that 10-FOLD is better than 5-FOLD, the results given have lower validation loss and higher validation accuracy.</b></p>
+
+        <p>According to Andrej Karpathy, the data has the possibility of overfitting, that is, if the training loss is greater than the validation loss, and if it is underfitting, that is, if the training loss and validation loss are about equal. <b>From the results above, neither of these conditions was found and it can be concluded that the above training process does not have overfitting and underfitting.</b></p>
+
+        Source : <a href="https://github.com/karpathy/char-rnn#tips-and-tricks">Andrej Karpathy Github</a>
+
+        <br><br>
+
+        <p><b class="text-danger">Because 10-fold has better results than the others, we will use 10-fold for the next process and so on.</b></p>
+
+        <br><br>
+        <h5>3.3 GridSearch Cross Validation</h5>
+        <p>GridSearchCV is a hyperparameter tuning technique used in machine learning to systematically search and evaluate the optimal combination of hyperparameters for a given model. It involves defining a grid of hyperparameter values to be tested, training the model with each combination of hyperparameters, and evaluating their performance using a cross-validation technique. The best hyperparameters are then chosen based on the performance metric.
+        <br><br>
+
+        <b>GridSearchCV is a powerful and efficient way to find the best hyperparameters for a given model, and it can greatly improve the accuracy and generalization of the model.</b></p>
+
+        <br><br>
+        <h5 class="text-center">HYPERPARAMETER SEARCH SPACE FOR THE ALGORITHM<br>THE FINAL VALUE IS GENERATED FROM GRID SEARCH WITH 10-FOLD CV PROCEDURE<br>WITH <span class="text-primary">GRAPHICAL PROCESSING UNIT (GPU)</span></h5>
+        <br><br>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>MODEL</th>
+              <th>HYPERPARAMETER</th>
+              <th>VALUES</th>
+              <th class="bg-success">FINAL VALUE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>RNN (LSTM)</td>
+              <td>epoch</td>
+              <td>15, 20</td>
+              <td>20</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>batch_size</td>
+              <td>128, 256</td>
+              <td>128</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>dropout_rate</td>
+              <td>0.2, 0.3</td>
+              <td>0.3</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>init_mode</td>
+              <td>'glorot_uniform', 'he_uniform'</td>
+              <td>he_uniform</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>init_recurrent</td>
+              <td>'glorot_uniform', 'orthogonal'</td>
+              <td>orthogonal</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>units</td>
+              <td>17, 30, 60</td>
+              <td>17</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <br>
+
+        <p><b>From the Grid Search process above, we use a larger batch_size (128 & 256) than the previous test, because we are training using the GPU which requires a large batch_size in one process for faster training.</b></p>
+
+        <br>
+        <b class="text-danger">BEST SCORE :</b> 0.711 (71.1% prediction is correct)
+        <br>
+
+        <br><br>
+        <h5 class="text-center">HYPERPARAMETER SEARCH SPACE FOR THE ALGORITHM<br>THE FINAL VALUE IS GENERATED FROM GRID SEARCH WITH 10-FOLD CV PROCEDURE<br>WITH <span class="text-primary">CENTRAL PROCESSING UNIT (CPU)</span></h5>
+        <br><br>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>MODEL</th>
+              <th>HYPERPARAMETER</th>
+              <th>VALUES</th>
+              <th class="bg-success">FINAL VALUE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>RNN (LSTM)</td>
+              <td>epoch</td>
+              <td>15, 20</td>
+              <td>20</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>batch_size</td>
+              <td>32, 64</td>
+              <td>32</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>dropout_rate</td>
+              <td>0.2, 0.3</td>
+              <td>0.2</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>init_mode</td>
+              <td>'glorot_uniform', 'he_uniform'</td>
+              <td>he_uniform</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>init_recurrent</td>
+              <td>'glorot_uniform', 'orthogonal'</td>
+              <td>orthogonal</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>units</td>
+              <td>17, 30, 60</td>
+              <td>17</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <br>
+
+        <p><b>From the Grid Search process above, we use a smaller batch_size (32 & 64) than the previous test, because we are training using the CPU which requires a smaller batch_size in one process for faster training.</b></p>
+
+        <br>
+        <b class="text-danger">BEST SCORE :</b> 0.713 (71.3% prediction is correct)
+        <br>
+
+        <br><br>
+        <h5 class="text-center">HYPERPARAMETER SEARCH SPACE FOR THE ALGORITHM<br>THE FINAL VALUE IS GENERATED FROM GRID SEARCH WITH 10-FOLD CV PROCEDURE<br>WITH <span class="text-primary">CENTRAL PROCESSING UNIT (CPU)<br>DATA AUGMENTED</span></h5>
+        <br><br>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>MODEL</th>
+              <th>HYPERPARAMETER</th>
+              <th>VALUES</th>
+              <th class="bg-success">FINAL VALUE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>RNN (LSTM)</td>
+              <td>epoch</td>
+              <td>15, 20</td>
+              <td>20</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>batch_size</td>
+              <td>32, 64</td>
+              <td>32</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>dropout_rate</td>
+              <td>0.2, 0.3</td>
+              <td>0.3</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>init_mode</td>
+              <td>'glorot_uniform', 'he_uniform'</td>
+              <td>he_uniform</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>init_recurrent</td>
+              <td>'glorot_uniform', 'orthogonal'</td>
+              <td>orthogonal</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>units</td>
+              <td>17, 30, 60</td>
+              <td>60</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <br>
+
+        <p><b>The previous results were not satisfactory nor with the GPU or CPU, seeing that it will try to do data augmentation which is useful to increase the amount of data from the original as was done above, the data will be augmented up and down by 0.01.</b></p>
+
+        <br>
+        <b class="text-danger">BEST SCORE :</b> 0.997 (99.7% prediction is correct)
+        <br><br><br>
+
+        <p>From the several tests above, the augmentation results with CPU usage get a satisfying average accuracy of 99.7% using a dataset of 26400 x 3 = 79,200</p>
+
+      </div>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
